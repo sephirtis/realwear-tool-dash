@@ -12,6 +12,8 @@
 
 內含 `assets/yolov8n.onnx`（YOLOv8n COCO 通用模型，約 12.8 MB）與 ONNX Runtime Web。本模型主要證明 Web 端 YOLO 推論管線；COCO 並無螺絲起子、尖嘴鉗、扳手三類。
 
+`vendor/ort-wasm-simd-threaded.mjs` 與 `.wasm` 必須一起部署；兩者是 Runtime 的載入器與執行檔，缺少任一檔時會顯示「YOLO 模型載入失敗」。
+
 要做實物辨識時，請用 YOLOv8 Detection ONNX 格式的自訓模型替換該檔，並把 `app.js` 中 `TOOL_NAMES` 的標籤改成模型類別。未偵測到自訂工具時，Demo 會使用黑布前景區塊的視覺 Demo 鎖定模式，讓完整遊戲流程可現場展示。
 
 ## 部署
