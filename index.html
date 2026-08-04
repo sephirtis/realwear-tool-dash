@@ -1,54 +1,8 @@
-<!doctype html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#07131d">
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css">
-  <title>工具快手 · RealWear Demo</title>
-</head>
-<body>
-  <main class="app" aria-live="polite">
-    <section class="camera-stage" aria-label="相機畫面">
-      <video id="camera" autoplay playsinline muted></video>
-      <canvas id="analysis" hidden></canvas>
-      <div id="targetBox" class="target-box" hidden></div>
-      <div class="topbar"><span class="brand">TOOL DASH</span><span id="cameraState">相機尚未啟動</span></div>
-      <div id="prompt" class="prompt">準備好後，說「開始遊戲」</div>
-      <div id="timer" class="timer">00.00</div>
-      <div id="result" class="result" hidden></div>
-    </section>
-
-    <section id="idlePanel" class="panel active">
-      <h1>工具快手</h1>
-      <p>在黑布上放置螺絲起子、尖嘴鉗與扳手。系統鎖定指定工具後，把它拿離畫面即可完成。</p>
-      <button id="cameraButton" class="primary">啟動相機</button>
-      <button id="startButton" class="primary" disabled>開始遊戲</button>
-      <p class="hint">語音：開始遊戲／檢查工具／取消／重新開始<br>也支援 RealWear 動作按鈕的 Enter/Space。</p>
-      <details><summary>YOLO 狀態</summary><p id="modelState">正在準備本機 YOLO ONNX 模型…</p></details>
-    </section>
-
-    <section id="successPanel" class="panel" hidden>
-      <h2>完成！</h2><p id="successText"></p><p id="rankText" class="rank"></p>
-      <button id="saveButton" class="primary">留下紀錄</button>
-      <button id="restartButton">重新開始</button>
-    </section>
-
-    <section id="namePanel" class="panel" hidden>
-      <h2>留下你的名字</h2>
-      <input id="nameInput" maxlength="18" autocomplete="off" placeholder="挑戰者">
-      <button id="confirmNameButton" class="primary">儲存</button>
-      <button id="voiceNameButton">語音輸入名字</button>
-    </section>
-
-    <section id="boardPanel" class="panel" hidden>
-      <h2>本機排行榜</h2><ol id="leaderboard"></ol>
-      <button id="playAgainButton" class="primary">再玩一次</button>
-    </section>
-  </main>
-  <script src="vendor/ort.min.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#07131d"><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="style.css"><title>工具快手</title></head><body>
+<main class="app"><section id="cameraContainer"><video id="cameraVideo" autoplay playsinline muted></video><div id="highlightBox" class="hidden"></div><div class="topbar"><b>TOOL DASH</b><span id="cameraState">相機未啟動</span></div><button id="cancelButton" class="end-button hidden" title="結束" tabindex="-1">結束／回到首頁</button></section>
+<section id="idlePanel" class="panel"><h1>工具快手</h1><p class="hint">辨識指定工具後，將它拿離畫面即可完成。</p><button id="startButton" class="primary" title="開始" tabindex="-1">開始遊戲</button><p id="statusLabel" class="status">正在準備工具辨識模型…</p></section>
+<section id="playingPanel" class="panel hidden"><p id="promptLabel" class="prompt"></p><p id="timerLabel" class="timer"></p><p id="detectStatus" class="status"></p></section>
+<section id="successPanel" class="panel hidden"><h2 id="successMainText"></h2><p id="successRankText" class="rank"></p><div class="button-row"><button id="restartButton" title="重新開始" tabindex="-1">回到首頁</button><button id="enterNameButton" title="留下大名" tabindex="-1">留下紀錄</button></div></section>
+<section id="nameEntryPanel" class="panel hidden"><h2>留下名字</h2><input id="nameInput" type="text" title="輸入姓名" placeholder="挑戰者" maxlength="20"><button id="confirmNameButton" class="primary" title="確認" tabindex="-1">儲存</button></section>
+<section id="leaderboardPanel" class="panel hidden"><h2>本機排行榜</h2><ol id="leaderboardList"></ol><button id="restartButton2" class="primary" title="重新開始" tabindex="-1">再玩一次</button></section></main>
+<script src="lib/ort/ort.min.js"></script><script type="module" src="js/app.js"></script></body></html>
